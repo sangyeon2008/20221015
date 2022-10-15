@@ -1,0 +1,76 @@
+#캐릭터 좌표  120861
+# def solution(keyinput, board):
+#     pos = [0,0]
+    # x=0
+    # y=0
+    # a=[]
+    #
+    # for i in range(len(keyinput)):
+    #     if keyinput[i]=="right":
+    #         x+=1
+    #     elif keyinput[i]=="left":
+    #         x-=1
+    #     elif keyinput[i]=="up":
+    #         y+=1
+    #     elif keyinput[i]=="down":
+    #         y-=1
+    # c = abs(x)
+    # d = abs(y)
+    # if c > x:
+    #     x=4
+    # if d>y:
+    #     y=4
+    # limit_x=(board[0]-1)//2
+    # limit_y=(board[1]-1)//2
+    # lr = {'left':-1,"right" : 1}
+    # ud = {"up":1,"down":-1}
+    # for k in keyinput:
+    #     if k in lr:
+    #         if abs(pos[0] + lr[k]) > limit_x:
+    #             continue
+    #         pos[0]+=lr[k]
+    #     elif k in ud:
+    #         if abs(pos[1])+ ud[k] > limit_y:
+    #             continue
+    #         pos[1] += ud[k]
+    # return
+
+
+
+
+
+
+# keyinput=["down", "down", "down", "down", "down"]
+# solution(keyinput,[7, 9])
+
+
+
+
+
+def solution(x, y):
+
+    mate= []                #짝꿍이 될 수들을 모아줄 공간.
+    x_cnt=[]                #x에 0~9까지의 수들이 몇개씩 있는지 넣어준다.
+    y_cnt= []               #Y에 0~9까지의 수들이 몇개씩 있는지 넣어준다.
+    for i in range(10):
+        x_cnt.append(x.count(str(i)))
+        y_cnt.append(y.count(str(i)))
+    print(x_cnt,y_cnt)
+    #x_cnt = [0,2,2,1,0,0,0,0,0,0]
+    #y_cnt = [0,1,1,1,1,1,0,0,0,0]
+    for j in range(10):
+        if x_cnt[j] > 0 and y_cnt[j] > 0:
+            mate +=[str(j)]*min(x_cnt[j],y_cnt[j])
+    mate.sort(reverse=True)
+
+    mate =  ''.join(mate)
+    if len(mate) ==0:
+        return '-1'
+    elif mate.count('0') == len(mate):
+        return '0'
+    else:
+        return mate
+
+x='3403'
+y='13203'
+print(solution('3403','13203'))
